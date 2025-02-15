@@ -16,32 +16,30 @@ export default defineManifest({
     128: 'img/logo-128.png',
   },
   action: {
-    default_popup: 'popup.html',
     default_icon: 'img/logo-48.png',
   },
-  options_page: 'options.html',
-  devtools_page: 'devtools.html',
   background: {
     service_worker: 'src/background/index.ts',
     type: 'module',
-  },
-  content_scripts: [
-    {
-      matches: ['http://*/*', 'https://*/*'],
-      js: ['src/contentScript/index.ts'],
-    },
-  ],
-  side_panel: {
-    default_path: 'sidepanel.html',
   },
   web_accessible_resources: [
     {
       resources: ['img/logo-16.png', 'img/logo-34.png', 'img/logo-48.png', 'img/logo-128.png'],
       matches: [],
     },
+    {
+      resources: ['search.html'],
+      matches: ['*://*/*'],
+    }
   ],
-  permissions: ['sidePanel', 'storage'],
+  permissions: ['scripting'],
   chrome_url_overrides: {
     newtab: 'newtab.html',
   },
+  commands: {
+    "open": {
+      description: "Open Spot Search overlay"
+    },
+  },
+  host_permissions: ["*://*/*"],
 })

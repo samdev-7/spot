@@ -1,4 +1,4 @@
-import App from './Sidepanel.svelte'
+import App from './New.svelte'
 
 const app = new App({
   target: document.getElementById('app')!,
